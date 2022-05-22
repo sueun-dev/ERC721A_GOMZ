@@ -41,7 +41,7 @@ contract GomzV1 is ERC721A, Ownable {
         require(whitelisted[msg.sender] == true, "You are not white list");
         require(quantity + _numberMinted(msg.sender) <= MAX_MINTS, "Exceeded the limit");
         require(totalSupply() + quantity <= WL_MAX_SUPPLY, "Not enough tokens left");
-        require(msg.value >= (PRICE_PER_ETH * quantity), "Not enough ether sent");
+        require(msg.value >= (WL_PRICE_PER_ETH * quantity), "Not enough ether sent");
         _safeMint(msg.sender, quantity);
     }
 
