@@ -5,7 +5,7 @@ import "https://github.com/sueun-dev/ERC721A_GOMZ/blob/main/contracts/ERC721A.so
 import "https://github.com/sueun-dev/ERC721_GOMZ/blob/master/contracts/access/Ownable.sol";
 
 contract GomzV1 is ERC721A, Ownable {
-    uint256 MAX_MINTS = 3;
+    uint256 MAX_MINTS = 5;
     uint256 public MAX_SUPPLY = 2022;
     uint256 public PRICE_PER_ETH = 0.0002 ether;
     uint256 public WL_PRICE_PER_ETH = 0.0001 ether;
