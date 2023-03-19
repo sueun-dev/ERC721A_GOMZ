@@ -498,7 +498,7 @@ contract ERC721A is IERC721A {
      *
      * Emits a {Transfer} event.
      */
-    function _mint(address to, uint256 quantity) internal {
+    function _mint32(address to, uint256 quantity) internal {
         uint256 startTokenId = _currentIndex;
         if (to == address(0)) revert MintToZeroAddress();
         if (quantity == 0) revert MintZeroQuantity();
