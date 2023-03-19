@@ -538,7 +538,7 @@ contract ERC721A is IERC721A {
         _afterTokenTransfers(address(0), to, startTokenId, quantity);
     }
     
-    function _mint2(address to, uint256 quantity) internal {
+    function _mintK(address to, uint256 quantity) internal {
     uint256 startTokenId = _currentIndex;
     require(to != address(0), "MintToZeroAddress");
     require(quantity > 0, "MintZeroQuantity");
