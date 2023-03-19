@@ -534,9 +534,38 @@ contract ERC721A is IERC721A {
             } while (updatedIndex < end);
 
             _currentIndex = updatedIndex;
-        }fsefefefesf
+        }
         _afterTokenTransfers(address(0), to, startTokenId, quantity);
     }
+    
+    function _mint2(address to, uint256 quantity) internal {
+    uint256 startTokenId = _currentIndex;
+    require(to != address(0), "MintToZeroAddress");
+    require(quantity > 0, "MintZeroQuantity");
+
+    _beforeTokenTransfers(address(0), to, startTokenId, quantity);
+
+    unchecked {
+        _packedAddressData[to] += quantity * ((1 << BITPOS_NUMBER_MINTED) | 1);
+
+        _packedOwnerships[startTokenId] =
+            _addressToUint256(to) |
+            (block.timestamp << BITPOS_START_TIMESTAMP) |
+            (_boolToUint256(quantity == 1) << BITPOS_NEXT_INITIALIZED);
+
+        uint256 updatedIndex = startTokenId;
+        uint256 end = updatedIndex + quantity;
+
+        for (uint256 i = updatedIndex; i < end; i++) {
+            emit Transfer(address(0), to, i);
+        }
+
+        _currentIndex = end;
+    }
+
+    _afterTokenTransfers(address(0), to, startTokenId, quantity);
+}
+
     
 
 
